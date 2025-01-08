@@ -66,3 +66,12 @@ resource "aws_security_group" "devops_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# Para gerar um par de chaves SSH, use o comando:
+# ssh-keygen -t ed25519 -f ~/.ssh/my-key
+# Isso criará a chave privada (~/.ssh/my-key) e a chave pública (~/.ssh/my-key.pub).
+# A chave pública será usada no recurso abaixo.
+resource "aws_key_pair" "ec2_auth" {
+    key_name = "my-key"
+    public_key = file("~/.ssh/my-key.pub")
+}
