@@ -26,3 +26,17 @@ resource "aws_internet_gateway" "IGW-01" {
         Name = "devops-igw"
     }
 }
+
+resource "aws_route_table" "public-rt-01" {
+    vpc_id = aws_vpc.vpc-01.id
+
+    tags = {
+        Name = "devops-public-rt-01"
+    }
+}
+
+resource "aws_route" "default_route" {
+    route_table_id = aws_route_table.public-rt-01.id
+    destination_cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.IGW-01.id
+}
