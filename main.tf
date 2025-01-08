@@ -1,11 +1,11 @@
 resource "aws_vpc" "vpc-01" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_hostnames = true
-  enable_dns_support = true
+    cidr_block = "10.0.0.0/16"
+    enable_dns_hostnames = true
+    enable_dns_support = true
 
-  tags = {
-    Name = "devops"
-  }
+    tags = {
+        Name = "devops"
+    }
 }
 
 resource "aws_subnet" "public-subnet-01" {
@@ -15,6 +15,14 @@ resource "aws_subnet" "public-subnet-01" {
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "devops - public"
+        Name = "devops-public"
+    }
+}
+
+resource "aws_internet_gateway" "IGW-01" {
+    vpc_id = aws_vpc.vpc-01.id
+
+    tags = {
+        Name = "devops-igw"
     }
 }
