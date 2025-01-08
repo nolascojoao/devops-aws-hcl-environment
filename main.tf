@@ -45,3 +45,24 @@ resource "aws_route_table_association" "public-subnet-01-assoc" {
   subnet_id      = aws_subnet.public-subnet-01.id
   route_table_id = aws_route_table.public-rt-01.id
 }
+
+resource "aws_security_group" "devops_sg" {
+  name        = "devops_sg"
+  description = "Security Group for DevOps"
+  vpc_id      = aws_vpc.vpc-01.id
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    # Troque 0.0.0.0/0 pelo seu IP /32
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
