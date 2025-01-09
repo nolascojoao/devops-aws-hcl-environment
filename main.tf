@@ -75,3 +75,21 @@ resource "aws_key_pair" "ec2_auth" {
     key_name = "my-key"
     public_key = file("~/.ssh/my-key.pub")
 }
+
+resource "aws_instance" "devops_ec2" {
+  instance_type = "t2.micro"
+  ami = data.aws_ami.server_ami.id
+  key_name = aws_key_pair.ec2_auth.id
+  vpc_security_group_ids = [aws_security_group.devops_sg.id]
+  subnet_id = aws_subnet.public-subnet-01.id
+  associate_public_ip_address = true
+  user_data = file("userdata.tpl")
+
+  root_block_device {
+    volume_size = 8
+  }
+
+  tags = {
+    Name = "devops-ec2"
+  }
+}
