@@ -88,8 +88,8 @@
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/nolascojoao/devops-aws-terraform-environment.git
-   cd devops-aws-terraform-environment
+   git clone https://github.com/nolascojoao/devops-aws-terraform-environment.git \
+   && cd devops-aws-terraform-environment
    ```
 
 
