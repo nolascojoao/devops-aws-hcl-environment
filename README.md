@@ -2,6 +2,8 @@
 
 
 > Scripts Terraform para criar infraestrutura na AWS, incluindo uma VPC e uma instância EC2 com Docker instalado automaticamente via script de userdata. 💻
+>
+> Repositório criado para estudos e aprendizado 📚
 
 
 <div align="center">
